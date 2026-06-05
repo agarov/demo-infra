@@ -1,0 +1,21 @@
+[Unit]
+Description=Demo Rails Application
+After=network.target
+
+[Service]
+Type=simple
+User=demoapp
+WorkingDirectory=/home/demoapp/demo-infra/app
+ExecStart=/home/demoapp/.rbenv/shims/bundle exec rails server -e production -p 3000 -b 127.0.0.1
+Restart=on-failure
+RestartSec=5
+
+Environment=RAILS_ENV=production
+Environment=SECRET_KEY_BASE=replace_me_with_a_real_secret_key_base
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=demo-rails-app
+
+[Install]
+WantedBy=multi-user.target

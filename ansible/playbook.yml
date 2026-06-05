@@ -1,0 +1,70 @@
+---
+- name: Deploy Rails application
+  hosts: demo
+  become: true
+  vars:
+    app_user: demoapp
+    repo_url: https://github.com/agarov/demo-infra.git
+    app_dir: "/home/{{ app_user }}/demo-infra/app"
+
+  tasks:
+    - name: Ensure app user exists
+      user:
+        name: "{{ app_user }}"
+        shell: /bin/bash
+        create_home: true
+
+    - name: Clone repository
+      git:
+        repo: "{{ repo_url }}"
+        dest: "/home/{{ app_user }}/demo-infra"
+        version: main
+      become_user: "{{ app_user }}"
+
+    - name: Deploy systemd service file
+      copy:
+        src: ../config/demo-app.service
+        dest: /etc/systemd/system/demo-app.service
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Reload systemd
+
+    - name: Enable and start demo-app service
+      systemd:
+        name: demo-app
+        enabled: true
+        state: started
+        daemon_reload: true
+
+    - name: Deploy nginx configuration
+      copy:
+        src: ../config/nginx.conf
+        dest: /etc/nginx/sites-available/demo-app
+        owner: root
+        group: root
+        mode: "0644"
+      notify: Reload nginx
+
+    - name: Enable nginx site
+      file:
+        src: /etc/nginx/sites-available/demo-app
+        dest: /etc/nginx/sites-enabled/demo-app
+        state: link
+      notify: Reload nginx
+
+    - name: Remove default nginx site
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: Reload nginx
+
+  handlers:
+    - name: Reload systemd
+      systemd:
+        daemon_reload: true
+
+    - name: Reload nginx
+      service:
+        name: nginx
+        state: reloaded

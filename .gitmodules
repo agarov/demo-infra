@@ -1,0 +1,3 @@
+[submodule "scripts/demo-magic"]
+	path = scripts/demo-magic
+	url = https://github.com/paxtonhare/demo-magic.git
