@@ -4,28 +4,15 @@
 # Tourne sur le serveur en tant qu'utilisateur applicatif
 # =============================================================
 
-. ~/demo-magic.sh -d -n
+SERVER_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$SERVER_SCRIPT_DIR/server_lib.sh" -d -n
 
 
 DEMO_PROMPT="${GREEN}$(whoami)${CYAN}@$(hostname)${COLOR_RESET} $ "
 
 clear
 
-section() {
-  echo ""
-  echo -e "\033[1m\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo -e "\033[1m\033[0;37m  $1\033[0m"
-  echo -e "\033[1m\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo ""
-}
-
-# section "Gestionnaire de paquets : apt"
-
-# p "# apt installe des logiciels depuis les dépôts officiels Ubuntu"
-# pe "sudo apt update -qq"
-# pe "sudo apt install -y git curl build-essential libssl-dev libreadline-dev zlib1g-dev"
-
-wait
+context_banner "SERVEUR DISTANT — $(whoami)@$(hostname)"
 
 section "Installation de Ruby via rbenv"
 
@@ -74,11 +61,9 @@ p "#    Besoin d'un gestionnaire de processus → systemd"
 
 wait
 
-p "# La configuration systemd est maintenant exécutée dans un script root dédié"
-
 echo ""
 echo -e "\033[1m\033[0;32m  ✓  Ruby et Rails installés côté utilisateur applicatif\033[0m"
 echo -e "\033[0;90m     Le service systemd sera activé ensuite via le script root dédié\033[0m"
 echo ""
 
-p ""
+wait

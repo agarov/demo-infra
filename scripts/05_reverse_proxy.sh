@@ -36,6 +36,9 @@ section "Installation et configuration sur le serveur"
 
 p "ssh root@$SERVER_IP"
 scp "$SCRIPT_DIR/demo-magic/demo-magic.sh" \
+    "$SCRIPT_DIR/server_lib.sh" \
     "$SCRIPT_DIR/05_server_nginx.sh" \
     "root@$SERVER_IP:~/" > /dev/null 2>&1
 ssh -t "root@$SERVER_IP" "DOMAIN=$DOMAIN bash ~/05_server_nginx.sh"
+clear
+context_banner "LOCAL — $(hostname)"

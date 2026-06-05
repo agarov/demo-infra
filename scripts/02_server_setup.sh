@@ -4,22 +4,17 @@
 # Ce script tourne sur le serveur via ssh -t
 # =============================================================
 
-. ~/demo-magic.sh -d -n
+SERVER_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$SERVER_SCRIPT_DIR/server_lib.sh" -d -n
 
 
 DEMO_PROMPT="${GREEN}root${CYAN}@$(hostname)${COLOR_RESET} # "
 
 clear
 
-section() {
-  echo ""
-  echo -e "\033[1m\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo -e "\033[1m\033[0;37m  $1\033[0m"
-  echo -e "\033[1m\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo ""
-}
-
 APP_USER="${APP_USER:-demoapp}"
+
+context_banner "SERVEUR DISTANT — root@$(hostname)"
 
 section "Inspection de la configuration SSH"
 

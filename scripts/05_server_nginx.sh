@@ -4,21 +4,15 @@
 # Tourne sur le serveur en root
 # =============================================================
 
-. ~/demo-magic.sh -d
-
+SERVER_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$SERVER_SCRIPT_DIR/server_lib.sh" -d -n
 
 DEMO_PROMPT="${GREEN}root${CYAN}@$(hostname)${COLOR_RESET} # "
-DOMAIN="${DOMAIN:-demo.example.com}"
+DOMAIN="${DOMAIN:-demo-infra-alpha.cheerz.com}"
 
 clear
 
-section() {
-  echo ""
-  echo -e "\033[1m\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo -e "\033[1m\033[0;37m  $1\033[0m"
-  echo -e "\033[1m\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo ""
-}
+context_banner "SERVEUR DISTANT — root@$(hostname)"
 
 section "Installation de NGINX"
 
@@ -88,4 +82,4 @@ echo -e "  \033[0;36m4.\033[0m Réseau : IP, ports, DNS, TLS"
 echo -e "  \033[0;36m5.\033[0m NGINX reverse proxy + certificat SSL Let's Encrypt"
 echo ""
 
-p ""
+wait

@@ -9,7 +9,7 @@ REPO_ROOT="$(cd "$_LIB_DIR/../.." && pwd)"
 # CONFIGURATION — update these before the live demo
 # ============================================================
 export SERVER_IP="${SERVER_IP:-1.2.3.4}"
-export DOMAIN="${DOMAIN:-demo.example.com}"
+export DOMAIN="${DOMAIN:-demo-infra-alpha.cheerz.com}"
 export APP_USER="${APP_USER:-demoapp}"
 # ============================================================
 
@@ -36,5 +36,13 @@ function section() {
   echo -e "${BOLD}${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${COLOR_RESET}"
   echo -e "${BOLD}${WHITE}  $1${COLOR_RESET}"
   echo -e "${BOLD}${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${COLOR_RESET}"
+  echo ""
+}
+
+function context_banner() {
+  echo ""
+  echo -e "${BOLD}${CYAN}██████████████████████████████████████████████████${COLOR_RESET}"
+  echo -e "${BOLD}${WHITE}  CONTEXTE : $1${COLOR_RESET}"
+  echo -e "${BOLD}${CYAN}██████████████████████████████████████████████████${COLOR_RESET}"
   echo ""
 }

@@ -31,18 +31,21 @@ section "Connexion au serveur"
 
 # Upload demo-magic and the server-side script
 scp "$SCRIPT_DIR/demo-magic/demo-magic.sh" \
+    "$SCRIPT_DIR/server_lib.sh" \
     "$SCRIPT_DIR/02_server_setup.sh" \
-    "root@$SERVER_IP:/root/"
+    "root@$SERVER_IP:/root/"  > /dev/null 2>&1
 
 p "# Format : ssh user@host — le user 'root' est disponible par défaut (Scaleway)"
 p "ssh root@$SERVER_IP"
 wait
 ssh -t "root@$SERVER_IP" "bash /root/02_server_setup.sh"
+clear
+context_banner "LOCAL — $(hostname)"
 
 section "✓ Connexion possible maintenant avec l'utilisateur applicatif"
 p "# Depuis votre machine locale :"
-p "ssh $APP_USER@$SERVER_IP"
+p "ssh $APP_USER@$SERVER_IP 'echo \"Connected as \$(whoami)\"'"
 wait
-ssh -t "$APP_USER@$SERVER_IP" "whoami"
+ssh -t "$APP_USER@$SERVER_IP" 'echo "Connected as $(whoami)"'
 
 p ""

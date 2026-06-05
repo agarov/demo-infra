@@ -3,20 +3,15 @@
 # Étape 4 — SERVER-SIDE : vérification réseau
 # =============================================================
 
-. ~/demo-magic.sh -d
+SERVER_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$SERVER_SCRIPT_DIR/server_lib.sh" -d -n
 
 
 DEMO_PROMPT="${GREEN}$(whoami)${CYAN}@$(hostname)${COLOR_RESET} $ "
 
 clear
 
-section() {
-  echo ""
-  echo -e "\033[1m\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo -e "\033[1m\033[0;37m  $1\033[0m"
-  echo -e "\033[1m\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-  echo ""
-}
+context_banner "SERVEUR DISTANT — $(whoami)@$(hostname)"
 
 section "Interfaces réseau et adresse IP"
 
@@ -38,4 +33,4 @@ pe "curl -s http://localhost:3000 | head -20"
 p "# Mais depuis l'extérieur il faut passer par IP:port — pas pratique"
 p "# → On va installer un reverse proxy NGINX devant Rails"
 
-p ""
+wait

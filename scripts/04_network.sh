@@ -60,6 +60,9 @@ section "Vérification des ports sur le serveur"
 
 p "ssh $APP_USER@$SERVER_IP"
 scp "$SCRIPT_DIR/demo-magic/demo-magic.sh" \
+    "$SCRIPT_DIR/server_lib.sh" \
     "$SCRIPT_DIR/04_server_network.sh" \
     "$APP_USER@$SERVER_IP:~/" > /dev/null 2>&1
 ssh -t "$APP_USER@$SERVER_IP" "bash ~/04_server_network.sh"
+clear
+context_banner "LOCAL — $(hostname)"

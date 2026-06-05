@@ -78,7 +78,7 @@ Edit `scripts/lib/demo.sh` or export variables in your shell:
 
 ```bash
 export SERVER_IP="51.158.x.x"       # public IP of your Scaleway instance
-export DOMAIN="demo.yourcompany.com" # domain pointing to SERVER_IP
+export DOMAIN="demo-infra-alpha.cheerz.com" # domain pointing to SERVER_IP
 export APP_USER="demoapp"            # applicative user created during step 2
 ```
 
