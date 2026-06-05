@@ -51,7 +51,7 @@ wait
 section "Clone du dépôt"
 
 p "# Ce dépôt contient l'application Rails et tous les fichiers de config"
-pe "[ -d ~/demo-infra/.git ] || git clone https://github.com/agarov/demo-infra.git ~/demo-infra"
+pe "[ -d ~/demo-infra/.git ] && git -C ~/demo-infra pull --ff-only || git clone https://github.com/agarov/demo-infra.git ~/demo-infra"
 pe "cd ~/demo-infra/app"
 pe "cat Gemfile"
 
@@ -66,8 +66,8 @@ wait
 
 section "Premier lancement de Rails"
 
-pe "RAILS_ENV=production rails db:create"
-pe "rails server -p 3000"
+pe "RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 rails db:prepare"
+pe "RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 rails server -b 0.0.0.0 -p 3000"
 
 p "# ⚠️  Fonctionne ! Mais s'arrête si on ferme ce terminal"
 p "#    Besoin d'un gestionnaire de processus → systemd"
