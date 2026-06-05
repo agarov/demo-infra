@@ -16,7 +16,7 @@ context_banner "SERVEUR DISTANT — root@$(hostname)"
 
 section "Installation de NGINX"
 
-pe "apt install -y nginx"
+pe "export DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a; apt-get install -y nginx"
 pe "systemctl status nginx --no-pager"
 
 wait
@@ -46,7 +46,7 @@ wait
 section "Certificat SSL avec Certbot (Let's Encrypt)"
 
 p "# Let's Encrypt = autorité de certification gratuite et automatisée"
-pe "apt install -y certbot python3-certbot-nginx"
+pe "export DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a; apt-get install -y certbot python3-certbot-nginx"
 
 wait
 

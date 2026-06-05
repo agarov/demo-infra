@@ -32,8 +32,8 @@ wait
 section "Terraform : initialisation"
 
 p "# terraform init télécharge les providers déclarés dans le fichier"
-p "cd terraform"
-p "terraform init"
+pe "cd terraform"
+pe "terraform init"
 
 wait
 
@@ -41,24 +41,26 @@ section "Terraform : plan"
 
 p "# terraform plan montre exactement ce qui sera créé/modifié/détruit"
 p "# Aucune modification réelle à ce stade"
-p "terraform plan"
+pe "terraform plan"
 
 wait
 
 section "Terraform : apply"
 
 p "# terraform apply crée réellement l'infrastructure"
-p "terraform apply -auto-approve"
+pe "terraform apply -auto-approve"
 
 wait
 
 section "Instance créée ✓"
 
 p "# On récupère l'IP publique depuis l'output Terraform"
-p "terraform output server_ip"
-p "terraform output ssh_command"
+pe "terraform output server_ip"
+pe "terraform output ssh_command"
 
 echo ""
 echo -e "${BOLD}${GREEN}  ✓  Instance disponible à l'adresse : $SERVER_IP${COLOR_RESET}"
 echo -e "${GREY}     → Prochaine étape : s'y connecter via SSH${COLOR_RESET}"
 echo ""
+
+pe "export SERVER_IP=$(terraform output -raw server_ip)"

@@ -15,7 +15,7 @@ context_banner "SERVEUR DISTANT — root@$(hostname)"
 section "Préparation système pour Ruby/Rails"
 
 p "# Installation des paquets nécessaires à ruby-build (compilation Ruby)"
-pe "apt update -qq && apt install -y git curl build-essential rustc perl pkg-config libssl-dev libreadline-dev zlib1g-dev libyaml-dev libffi-dev libgmp-dev sqlite3 libsqlite3-dev"
+pe "export DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a; apt-get update && apt-get install -y git curl build-essential rustc perl pkg-config libssl-dev libreadline-dev zlib1g-dev libyaml-dev libffi-dev libgmp-dev sqlite3 libsqlite3-dev"
 
 wait
 

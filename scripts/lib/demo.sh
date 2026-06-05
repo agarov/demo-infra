@@ -23,7 +23,7 @@ if [[ ! -f "$DEMO_MAGIC_DIR/demo-magic.sh" ]]; then
 fi
 
 # shellcheck source=/dev/null
-. "$DEMO_MAGIC_DIR/demo-magic.sh"
+. "$DEMO_MAGIC_DIR/demo-magic.sh" -n
 
 # Demo settings
 TYPE_SPEED=200

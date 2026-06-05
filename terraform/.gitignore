@@ -1,0 +1,3 @@
+.terraform/
+scaleway.auto.tfvars
+terraform.tfstate
