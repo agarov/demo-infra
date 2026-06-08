@@ -31,8 +31,8 @@ resource "scaleway_instance_ip" "public_ip" {
 }
 
 resource "scaleway_instance_server" "demo" {
-  type  = "DEV1-S"
-  image = "ubuntu_jammy"
+  type  = "DEV1-L"
+  image = "debian_trixie"
   name  = "demo-rails-app"
 
   ip_id = scaleway_instance_ip.public_ip.id

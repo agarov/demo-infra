@@ -15,14 +15,13 @@ context_banner "SERVEUR DISTANT — root@$(hostname)"
 section "Préparation système pour Ruby/Rails"
 
 p "# Installation des paquets nécessaires à ruby-build (compilation Ruby)"
-pe "export DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a; apt-get update && apt-get install -y git curl build-essential rustc perl pkg-config libssl-dev libreadline-dev zlib1g-dev libyaml-dev libffi-dev libgmp-dev sqlite3 libsqlite3-dev"
+pe "export DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=a; apt-get update && apt-get install -y git curl build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev rustc"
 
 wait
 
 p "# Vérification rapide"
 pe "gcc --version | head -1"
-pe "perl --version | head -2"
-pe "pkg-config --modversion openssl"
+pe "rustc --version"
 
 echo ""
 echo -e "\033[1m\033[0;32m  ✓  Prérequis système Ruby installés\033[0m"

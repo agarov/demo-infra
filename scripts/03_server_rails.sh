@@ -28,9 +28,9 @@ pe "command -v rbenv"
 
 wait
 
-p "# Compilation de Ruby 3.3.0 (quelques minutes)"
-pe 'RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr" rbenv install -s 3.3.0'
-pe "rbenv global 3.3.0"
+p "# Compilation de Ruby 4.0.5 avec make parallèle (quelques minutes)"
+pe 'MAKE_OPTS="-j$(nproc)" RUBY_CONFIGURE_OPTS="--disable-install-doc" rbenv install -s 4.0.5'
+pe "rbenv global 4.0.5"
 pe "ruby --version"
 
 wait
