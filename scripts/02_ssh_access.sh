@@ -29,6 +29,10 @@ wait
 
 section "Connexion au serveur"
 
+if [[ -n "${SERVER_IP:-}" && "$SERVER_IP" != "1.2.3.4" ]]; then
+    ssh-keygen -R "$SERVER_IP" >/dev/null 2>&1
+fi
+
 # Upload demo-magic and the server-side script
 scp "$SCRIPT_DIR/demo-magic/demo-magic.sh" \
     "$SCRIPT_DIR/server_lib.sh" \

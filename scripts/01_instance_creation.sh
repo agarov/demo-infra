@@ -58,9 +58,9 @@ p "# On récupère l'IP publique depuis l'output Terraform"
 pe "terraform output server_ip"
 pe "terraform output ssh_command"
 
+pe "export SERVER_IP=$(terraform output -raw server_ip)"
+
 echo ""
 echo -e "${BOLD}${GREEN}  ✓  Instance disponible à l'adresse : $SERVER_IP${COLOR_RESET}"
 echo -e "${GREY}     → Prochaine étape : s'y connecter via SSH${COLOR_RESET}"
 echo ""
-
-pe "export SERVER_IP=$(terraform output -raw server_ip)"
