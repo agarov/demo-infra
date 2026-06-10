@@ -8,7 +8,7 @@ SERVER_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "$SERVER_SCRIPT_DIR/server_lib.sh" -d -n
 
 DEMO_PROMPT="${GREEN}root${CYAN}@$(hostname)${COLOR_RESET} # "
-DOMAIN="${DOMAIN:-demo-infra-alpha.cheerz.com}"
+DOMAIN="${DOMAIN:-demo-infra.cheerz.com}"
 
 clear
 

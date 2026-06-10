@@ -9,7 +9,7 @@ REPO_ROOT="$(cd "$_LIB_DIR/../.." && pwd)"
 # CONFIGURATION — update these before the live demo
 # ============================================================
 export SERVER_IP="${SERVER_IP:-1.2.3.4}"
-export DOMAIN="${DOMAIN:-demo-infra-alpha.cheerz.com}"
+export DOMAIN="${DOMAIN:-demo-infra.cheerz.com}"
 export APP_USER="${APP_USER:-demoapp}"
 # ============================================================
 
