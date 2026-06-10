@@ -38,6 +38,20 @@ pe "systemctl reload nginx"
 
 wait
 
+section "Sécurisation du backend Rails"
+
+p "# NGINX est en place : Rails n'a plus besoin d'écouter sur toutes les interfaces"
+pe "sed -i 's/-b 0[.]0[.]0[.]0/-b 127.0.0.1/' /etc/systemd/system/demo-app.service"
+pe "systemctl daemon-reload"
+pe "systemctl restart demo-app"
+
+wait
+
+p "# Rails reste accessible localement pour NGINX"
+pe "curl -s http://127.0.0.1:3000 | head -20"
+
+wait
+
 p "# L'app est maintenant accessible sur le port 80"
 pe "curl -s http://$DOMAIN | head -20"
 
